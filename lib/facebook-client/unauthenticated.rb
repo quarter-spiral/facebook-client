@@ -16,6 +16,10 @@ module Facebook
         options[:scopes] ||= []
         client.adapter.authorization_url(options)
       end
+
+      def app_url
+        client.adapter.app_url
+      end
     end
   end
 end

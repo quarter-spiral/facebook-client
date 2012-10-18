@@ -48,6 +48,10 @@ describe Facebook::Client::Adapter::FbGraph do
 
       fb_auth_client_mock.verify
     end
+
+    it "can retrieve an apps URL" do
+      @client.app_url.must_equal "https://www.facebook.com/apps/application.php?id=#{@client.client.client_id}"
+    end
   end
 
   describe "authenticated client" do

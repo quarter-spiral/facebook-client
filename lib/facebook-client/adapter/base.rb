@@ -19,6 +19,10 @@ module Facebook
         def friends_of(user_id, access_token)
           raise "Unimplemented"
         end
+
+        def app_url
+          "https://www.facebook.com/apps/application.php?id=#{client.client_id}"
+        end
       end
     end
   end

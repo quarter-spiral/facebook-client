@@ -39,6 +39,10 @@ describe Facebook::Client::Adapter::FbGraph do
 
       @client.authorization_url(redirect_url: 'http://some-other.example.com', scopes: []).must_equal(url)
     end
+
+    it "can retrieve an apps URL" do
+      @client.app_url.must_equal "https://www.facebook.com/apps/application.php?id=#{@client.client.client_id}"
+    end
   end
 
   describe "authenticated client" do

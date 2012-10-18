@@ -45,6 +45,12 @@ First authenticate with an OAuth access token passed in as ``access_token``. You
 
 The ``user_id`` is the Facebook user's id who's friends you are trying to retrieve.
 
+### Get an apps URL
+
+```ruby
+client.unauthenticated.app_url # => string with the app's URL
+```
+
 ### Errors
 
 In case of a failed authentication an ``Facebook::Client::Error::AuthenticationError`` is thrown. For all other domain related errors a ``Facebook::Client::Error::Base`` will be thrown.
