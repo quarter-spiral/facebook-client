@@ -35,7 +35,7 @@ module Facebook
         end
 
         def friends_of(user_id, access_token)
-          friends[user_id]
+          friends[user_id] || []
         end
 
         protected
