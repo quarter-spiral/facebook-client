@@ -11,7 +11,7 @@ module Facebook
       class Mock < Base
         attr_writer :authorization_url, :friends
 
-        def decode_signed_reuqest(client_secret, signed_request)
+        def decode_signed_request(client_secret, signed_request)
           encoded_sig, payload = signed_request.split('.', 2)
           sig = urldecode64(encoded_sig)
           data = JSON.parse(urldecode64(payload))

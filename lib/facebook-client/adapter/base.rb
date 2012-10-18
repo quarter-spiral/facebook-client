@@ -8,7 +8,7 @@ module Facebook
           @client = client
         end
 
-        def decode_signed_reuqest(client_secret, signed_request)
+        def decode_signed_request(client_secret, signed_request)
           raise "Unimplemented"
         end
 

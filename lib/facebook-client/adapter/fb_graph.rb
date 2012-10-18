@@ -9,7 +9,7 @@ module Facebook
           @fb_auth = ::FbGraph::Auth.new(client.client_id, client.client_secret)
         end
 
-        def decode_signed_reuqest(client_secret, signed_request)
+        def decode_signed_request(client_secret, signed_request)
           facebook_info = ::FbGraph::Auth::SignedRequest.verify(@fb_auth.client, signed_request)
         rescue ::FbGraph::Auth::VerificationFailed => e
           raise Error::AuthenticationError.new(e)

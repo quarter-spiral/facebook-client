@@ -8,7 +8,7 @@ module Facebook
       end
 
       def decode_signed_request(signed_request)
-        client.adapter.decode_signed_reuqest(@client.client_secret, signed_request)
+        client.adapter.decode_signed_request(@client.client_secret, signed_request)
       end
 
       def authorization_url(options = {})
