@@ -1,3 +1,7 @@
+# 0.0.4
+
+* Adds token owner introspection
+
 # 0.0.3
 
 * Adds a ``app_url`` method to retrieve an app's URL on Facebook
