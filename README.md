@@ -45,6 +45,21 @@ First authenticate with an OAuth access token passed in as ``access_token``. You
 
 The ``user_id`` is the Facebook user's id who's friends you are trying to retrieve.
 
+### Retrieve information about a user
+
+```ruby
+client.authenticated_by(access_token).whoami
+```
+
+Returns a hash like this:
+```ruby
+{
+  'id' => '123456',
+  'name' => 'Peter Smith',
+  'email' => 'peter@example.com'
+}
+```
+
 ### Get an apps URL
 
 ```ruby

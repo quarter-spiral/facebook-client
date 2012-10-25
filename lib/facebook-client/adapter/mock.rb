@@ -34,8 +34,16 @@ module Facebook
           @friends ||= {}
         end
 
+        def token_owner
+          @token_owner ||= {}
+        end
+
         def friends_of(user_id, access_token)
           friends[user_id] || []
+        end
+
+        def whoami(access_token)
+          token_owner[access_token]
         end
 
         protected

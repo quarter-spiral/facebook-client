@@ -11,6 +11,10 @@ module Facebook
       def friends_of(user_id)
         client.adapter.friends_of(user_id, access_token)
       end
+
+      def whoami
+        client.adapter.whoami(access_token)
+      end
     end
   end
 end

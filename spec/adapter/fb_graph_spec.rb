@@ -72,5 +72,24 @@ describe Facebook::Client::Adapter::FbGraph do
 
       fb_user_mock.verify
     end
+
+    it "can retrieve information about a token owner" do
+      user_id = '539656'
+      user_info = {
+        'id' => user_id,
+        'name' => 'Peter Smith',
+        'email' => 'peter@example.com'
+      }
+      ::FbGraph::User = MiniTest::Mock.new
+      fb_user_mock = MiniTest::Mock.new
+      fb_user = MiniTest::Mock.new
+      ::FbGraph::User.expect :me, fb_user, [@access_token]
+      fb_user_data = Struct.new(:identifier, :name, :email).new(*user_info.values)
+      fb_user.expect :fetch, fb_user_data
+
+      @client.whoami.must_equal user_info
+      fb_user_mock.verify
+      fb_user.verify
+    end
   end
 end

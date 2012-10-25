@@ -25,6 +25,15 @@ module Facebook
           user.fetch
           user.friends
         end
+
+        def whoami(access_token)
+          data = ::FbGraph::User.me(access_token).fetch
+          {
+            'id' => data.identifier,
+            'name' => data.name,
+            'email' => data.email
+          }
+        end
       end
     end
   end

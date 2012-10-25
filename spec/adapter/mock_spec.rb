@@ -58,5 +58,17 @@ describe Facebook::Client::Adapter::FbGraph do
 
       @client.friends_of(user_id).must_equal [1,2,3]
     end
+
+     it "can retrieve information about a token owner" do
+      user_id = '539656'
+      user_info = {
+        'id' => user_id,
+        'name' => 'Peter Smith',
+        'email' => 'peter@example.com'
+      }
+      @client.client.adapter.token_owner[@access_token] = user_info
+
+      @client.whoami.must_equal user_info
+    end
   end
 end

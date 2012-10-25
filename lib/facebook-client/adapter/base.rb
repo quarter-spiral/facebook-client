@@ -23,6 +23,10 @@ module Facebook
         def app_url
           "https://www.facebook.com/apps/application.php?id=#{client.client_id}"
         end
+
+        def whoami(access_token)
+          raise "Unimplemented"
+        end
       end
     end
   end
