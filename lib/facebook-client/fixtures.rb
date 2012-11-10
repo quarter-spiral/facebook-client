@@ -14,9 +14,9 @@ module Facebook
         '123'
       end
 
-      def self.signed_request_data
+      def self.signed_request_data(options = {})
         {
-          "oauth_token" => "oauth-token",
+          "oauth_token" => options[:oauth_token] || "oauth-token",
           "algorithm" => "HMAC-SHA256",
           "expires" => 1291840400,
           "issued_at" => 1291836800,
@@ -42,19 +42,20 @@ module Facebook
           "registration_metadata" => {
              "fields" => "[\n {'name':'name'},\n {'name':'email'},\n {'name':'location'},\n {'name':'gender'},\n {'name':'birthday'},\n {'name':'password'},\n {'name':'like',       'description':'Do you like this plugin?', 'type':'checkbox',  'default':'checked'},\n {'name':'phone',      'description':'Phone Number',             'type':'text'},\n {'name':'anniversary','description':'Anniversary',              'type':'date'},\n {'name':'captain',    'description':'Best Captain',             'type':'select',    'options':{'P':'Jean-Luc Picard','K':'James T. Kirk'}},\n {'name':'force',      'description':'Which side?',              'type':'select',    'options':{'jedi':'Jedi','sith':'Sith'}, 'default':'sith'},\n {'name':'live',       'description':'Best Place to Live',       'type':'typeahead', 'categories':['city','country','state_province']},\n {'name':'captcha'}\n]"
           },
-          "user_id" => "218471"
+          "user_id" => options[:user_id] || "218471"
         }
       end
 
       def self.signed_request(options = {})
-        options[:bogus_signature] ||= false
+        bogus_signature = options.delete :bogus_signature
 
-        payload = urlencode64(JSON.dump(signed_request_data))
+        data = signed_request_data(options)
+
+        payload = urlencode64(JSON.dump(data))
 
         sig = OpenSSL::HMAC.digest('sha256', client_secret, payload)
-        if options[:bogus_signature]
-          sig = sig[0...10] + sig[10..-1].reverse
-        end
+        sig = sig[0...10] + sig[10..-1].reverse if bogus_signature
+
         encoded_sig = urlencode64(sig)
         [encoded_sig, payload].join('.')
       end

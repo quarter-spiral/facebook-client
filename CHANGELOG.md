@@ -1,3 +1,7 @@
+# 0.0.5 WIP
+
+* Makes the fixtures more flexible
+
 # 0.0.4
 
 * Adds token owner introspection
